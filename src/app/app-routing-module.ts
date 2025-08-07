@@ -12,14 +12,14 @@ const routes: Routes = [
   {
     path: 'characters',
     loadChildren: () =>
-      import('./characters/characters-module.js').then(
+      import('./characters/characters.module.js').then(
         (charactersModule) => charactersModule.CharactersModule
       ),
   },
   {
     path: 'episodes',
     loadChildren: () =>
-      import('./episodes/episodes-module.js').then(
+      import('./episodes/episodes.module.js').then(
         (episodesModule) => episodesModule.EpisodesModule
       ),
   },

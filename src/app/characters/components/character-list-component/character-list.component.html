@@ -1,0 +1,31 @@
+<main class="character-list-container" *ngIf="characters">
+  <mat-card
+    *ngFor="let item of characters(); trackBy: trackByItemId"
+    class="character-card"
+    appearance="outlined"
+  >
+    <mat-card-header>
+      <img mat-card-avatar [src]="item?.image" [alt]="item?.name" />
+      <mat-card-title>{{ item.name }}</mat-card-title>
+      <mat-card-subtitle>{{ item.status }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="item.image" [alt]="item.name" />
+    <mat-card-content>
+      <p>
+        {{ item.species }}
+      </p>
+      <p>
+        {{ item.type }}
+      </p>
+      <p>
+        {{ item.gender }}
+      </p>
+      <p>
+        {{ item.origin.name }}
+      </p>
+      <p>
+        {{ item.location.name }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</main>

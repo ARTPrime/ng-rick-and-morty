@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CharactersService } from '../../services/characters-service';
+import { Component, OnInit, signal } from '@angular/core';
+import { CharactersService } from '../../services/characters.service';
 import { take } from 'rxjs';
 import {
   PaginatedResponse,
@@ -11,12 +11,12 @@ import { trackByPropertyName } from '../../../functions/track-by-item-id';
 @Component({
   selector: 'app-character-list-component',
   standalone: false,
-  templateUrl: './character-list-component.html',
-  styleUrl: './character-list-component.scss',
+  templateUrl: './character-list.component.html',
+  styleUrl: './character-list.component.scss',
 })
 export class CharacterListComponent implements OnInit {
   public paginationInfo?: PagionationInfo;
-  public characters: Character[] = [];
+  public characters = signal<Character[]>([]);
   public trackByItemId = (index: number, item: Character) =>
     trackByPropertyName(index, item, 'id');
 
@@ -30,8 +30,8 @@ export class CharacterListComponent implements OnInit {
       .getCharacters()
       .pipe(take(1))
       .subscribe((response: PaginatedResponse<Character>) => {
-        this.paginationInfo = response?.info;
-        this.characters = response?.results;
+        this.paginationInfo = { ...response.info };
+        this.characters?.set(response.results);
       });
   }
 }

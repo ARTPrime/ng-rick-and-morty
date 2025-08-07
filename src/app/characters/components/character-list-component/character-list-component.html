@@ -1,9 +1,0 @@
-<article
-  *ngFor="let item of characters; let index = index; trackBy: trackByItemId"
->
-  {{ item.name | uppercase }}
-</article>
-
-<article *ngIf="paginationInfo">
-  {{ paginationInfo | json }}
-</article>

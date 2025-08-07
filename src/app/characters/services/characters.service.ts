@@ -7,17 +7,19 @@ import { Character } from '../../models/character';
 
 @Injectable({ providedIn: 'root' })
 export class CharactersService {
-  private readonly path = 'character';
+  private path = `${environment.apiRoot}/character`;
 
   constructor(private httpClient: HttpClient) {}
 
   public getCharacters(
     page?: number
   ): Observable<PaginatedResponse<Character>> {
-    const url = `${environment.apiRoot}/${this.path}`;
-
     return this.httpClient.get<PaginatedResponse<Character>>(
-      page ? `${url}/?page=${page}` : url
+      page ? `${this.path}/?page=${page}` : this.path
     );
+  }
+
+  public getCharacter(id: number): Observable<Character> {
+    return this.httpClient.get<Character>(`${this.path}/${id}`);
   }
 }
