@@ -7,6 +7,7 @@ import {
 } from '../../../models/paginated-response';
 import { Character } from '../../../models/character';
 import { trackByPropertyName } from '../../../functions/track-by-item-id';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-character-list-component',
@@ -15,7 +16,12 @@ import { trackByPropertyName } from '../../../functions/track-by-item-id';
   styleUrl: './character-list.component.scss',
 })
 export class CharacterListComponent implements OnInit {
-  public paginationInfo?: PagionationInfo;
+  public paginationInfo = signal<PagionationInfo>({
+    count: 0,
+    next: '',
+    prev: '',
+    pages: 0,
+  });
   public characters = signal<Character[]>([]);
   public trackByItemId = (index: number, item: Character) =>
     trackByPropertyName(index, item, 'id');
@@ -30,8 +36,18 @@ export class CharacterListComponent implements OnInit {
       .getCharacters()
       .pipe(take(1))
       .subscribe((response: PaginatedResponse<Character>) => {
-        this.paginationInfo = { ...response.info };
-        this.characters?.set(response.results);
+        this.paginationInfo.set(response.info);
+        this.characters.set(response.results);
+      });
+  }
+
+  public onPageEvent(pageEvent: PageEvent) {
+    this.charactersService
+      .getCharacters(pageEvent.pageIndex + 1)
+      .pipe(take(1))
+      .subscribe((response: PaginatedResponse<Character>) => {
+        this.paginationInfo.set(response.info);
+        this.characters.set(response.results);
       });
   }
 }

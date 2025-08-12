@@ -7,25 +7,38 @@
     <mat-card-header>
       <img mat-card-avatar [src]="item?.image" [alt]="item?.name" />
       <mat-card-title>{{ item.name }}</mat-card-title>
-      <mat-card-subtitle>{{ item.status }}</mat-card-subtitle>
+      <mat-card-subtitle class="character-card-subtitle"
+        ><mat-icon
+          aria-hidden="false"
+          aria-label="Character Status Icon"
+          fontIcon="monitor_heart"
+        ></mat-icon>
+        {{ item.status }}</mat-card-subtitle
+      >
     </mat-card-header>
     <img mat-card-image [src]="item.image" [alt]="item.name" />
     <mat-card-content>
-      <p>
-        {{ item.species }}
+      <p class="character-card-content-item">
+        <span>Species: </span>{{ item.species }}
       </p>
-      <p>
-        {{ item.type }}
+      <p class="character-card-content-item">
+        <span>Gender: </span>{{ item.gender }}
       </p>
-      <p>
-        {{ item.gender }}
+      <p class="character-card-content-item">
+        <span>Origin: </span>{{ item.origin.name }}
       </p>
-      <p>
-        {{ item.origin.name }}
-      </p>
-      <p>
-        {{ item.location.name }}
+      <p class="character-card-content-item">
+        <span>Last location: </span>{{ item.location.name }}
       </p>
     </mat-card-content>
   </mat-card>
 </main>
+<section class="character-list-paginator">
+  <mat-paginator
+    [length]="paginationInfo().count"
+    [pageSize]="20"
+    aria-label="Select page"
+    (page)="onPageEvent($event)"
+  >
+  </mat-paginator>
+</section>
