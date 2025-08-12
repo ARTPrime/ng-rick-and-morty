@@ -1,1 +1,37 @@
-<p>episode-list-component works!</p>
+<main class="episode-list-container" *ngIf="episodes">
+  <mat-card
+    *ngFor="let item of episodes(); trackBy: trackByItemId"
+    class="episode-card"
+    appearance="outlined"
+  >
+    <mat-card-header>
+      <!-- <img mat-card-avatar [src]="item?.image" [alt]="item?.name" /> -->
+      <mat-card-title>{{ item.name }}</mat-card-title>
+      <mat-card-subtitle class="episode-card-subtitle">
+        {{ item.episode }}</mat-card-subtitle
+      >
+    </mat-card-header>
+    <!-- <img mat-card-image [src]="item.image" [alt]="item.name" /> -->
+    <mat-card-content>
+      <p class="episode-card-content-item">
+        <span>Air date: </span>{{ item.air_date }}
+      </p>
+      <p class="episode-card-content-item">
+        <span>Episode Code: </span>{{ item.episode }}
+      </p>
+      <p class="episode-card-content-item"><span>URL: </span>{{ item.url }}</p>
+      <p class="episode-card-content-item">
+        <span>Added to Database: </span>{{ item.created }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</main>
+<section class="episode-list-paginator">
+  <mat-paginator
+    [length]="paginationInfo().count"
+    [pageSize]="20"
+    aria-label="Select page"
+    (page)="onPageEvent($event)"
+  >
+  </mat-paginator>
+</section>
