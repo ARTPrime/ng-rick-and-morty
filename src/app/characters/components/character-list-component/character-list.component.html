@@ -1,4 +1,4 @@
-<main class="character-list-container" *ngIf="characters">
+<main class="character-list-container">
   <mat-card
     *ngFor="let item of characters(); trackBy: trackByItemId"
     class="character-card"
@@ -6,7 +6,11 @@
   >
     <mat-card-header>
       <img mat-card-avatar [src]="item?.image" [alt]="item?.name" />
-      <mat-card-title>{{ item.name }}</mat-card-title>
+      <mat-card-title
+        ><a [routerLink]="[item.id]" routerLinkActive="router-link-active">{{
+          item.name
+        }}</a></mat-card-title
+      >
       <mat-card-subtitle class="character-card-subtitle"
         ><mat-icon
           aria-hidden="false"
@@ -33,12 +37,9 @@
     </mat-card-content>
   </mat-card>
 </main>
-<section class="character-list-paginator">
-  <mat-paginator
-    [length]="paginationInfo().count"
-    [pageSize]="20"
-    aria-label="Select page"
-    (page)="onPageEvent($event)"
-  >
-  </mat-paginator>
+<section class="character-list-paginator" *ngIf="characters().length > 0">
+  <app-paginator
+    [paginationInfo]="paginationInfo()"
+    (pageEvent)="onPageEvent($event)"
+  ></app-paginator>
 </section>

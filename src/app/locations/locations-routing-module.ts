@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LocationListComponent } from './components/location-list-component/location-list-component';
 import { LocationDetailComponent } from './components/location-detail-component/location-detail-component';
-import { NotFoundComponent } from '../shared/not-found-component/not-found-component';
+import { NotFoundComponent } from '../shared/not-found/not-found-component';
 
 const routes: Routes = [
   {

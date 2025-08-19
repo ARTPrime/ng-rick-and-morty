@@ -43,7 +43,7 @@ export class CharacterListComponent implements OnInit {
 
   public onPageEvent(pageEvent: PageEvent) {
     this.charactersService
-      .getCharacters(pageEvent.pageIndex + 1)
+      .getCharacters(pageEvent.pageIndex)
       .pipe(take(1))
       .subscribe((response: PaginatedResponse<Character>) => {
         this.paginationInfo.set(response.info);

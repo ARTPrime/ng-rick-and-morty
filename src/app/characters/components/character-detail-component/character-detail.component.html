@@ -1,1 +1,24 @@
-<p>character-detail-component works!</p>
+@if(characterData()) {
+<main class="character-detail-container">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title> {{ characterData()?.name }}</mat-card-title>
+      <mat-card-subtitle> {{ characterData()?.status }}</mat-card-subtitle>
+    </mat-card-header>
+    <img [src]="characterData()?.image" [alt]="characterData()?.image" />
+  </mat-card>
+  <br />
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Species</mat-card-title>
+      <mat-card-subtitle>{{ characterData()?.species }}</mat-card-subtitle>
+
+      <mat-card-title>Gender</mat-card-title>
+      <mat-card-subtitle>{{ characterData()?.gender }}</mat-card-subtitle>
+
+      <mat-card-title>Species</mat-card-title>
+      <mat-card-subtitle>{{ characterData()?.origin?.name }}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</main>
+}
