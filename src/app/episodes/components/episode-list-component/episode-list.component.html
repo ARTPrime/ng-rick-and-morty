@@ -27,11 +27,8 @@
   </mat-card>
 </main>
 <section class="episode-list-paginator">
-  <mat-paginator
-    [length]="paginationInfo().count"
-    [pageSize]="20"
-    aria-label="Select page"
-    (page)="onPageEvent($event)"
-  >
-  </mat-paginator>
+  <app-paginator
+    [paginationInfo]="paginationInfo()"
+    (pageEvent)="onPageEvent($event)"
+  ></app-paginator>
 </section>

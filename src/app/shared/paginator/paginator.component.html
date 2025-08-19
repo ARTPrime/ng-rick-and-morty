@@ -1,0 +1,18 @@
+<mat-paginator
+  [length]="paginationInfo.count"
+  [pageIndex]="currentPageIndex"
+  [pageSize]="20"
+  aria-label="Select page"
+  (page)="onPageChange($event)"
+>
+</mat-paginator>
+<mat-form-field>
+  <mat-label>Page</mat-label>
+  <input
+    type="number"
+    matInput
+    [(ngModel)]="currentPage"
+    (change)="onPageInputChange()"
+    maxlength="3"
+  />
+</mat-form-field>

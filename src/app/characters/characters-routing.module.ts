@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from '../shared/not-found-component/not-found-component';
-import { CharacterListComponent } from './components/character-list-component/character-list.component';
+import { NotFoundComponent } from '../shared/not-found/not-found-component';
 import { CharacterDetailComponent } from './components/character-detail-component/character-detail.component';
+import { CharactersComponent } from './characters.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CharacterListComponent,
-  },
-  {
-    path: ':id',
-    component: CharacterDetailComponent,
+    component: CharactersComponent,
+    children: [
+      {
+        path: ':id',
+        component: CharacterDetailComponent,
+      },
+    ],
   },
   {
     path: '**',
