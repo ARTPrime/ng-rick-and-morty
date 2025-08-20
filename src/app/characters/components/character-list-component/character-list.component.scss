@@ -2,7 +2,8 @@
 
 :host {
   display: block;
-  padding: 8px;
+  height: 100%;
+  overflow: hidden;
 }
 
 .character-list {
@@ -11,10 +12,14 @@
     grid-template-columns: 1fr;
     grid-auto-rows: 1fr;
     gap: 16px;
+    padding: 8px;
+    height: calc(100% - 180px);
+    overflow: auto;
   }
 
   &-paginator {
-    margin-top: 12px;
+    border-top: 1px solid #bec9c8;
+    padding: 16px 8px 0;
   }
 }
 
@@ -31,14 +36,20 @@
 }
 
 @media screen and (min-width: $screen-size-mobile-lg) {
-  :host {
+  .character-list-container {
     padding: 16px;
+    height: calc(100% - 196px);
+  }
+
+  .character-list-paginator {
+    padding: 16px 16px 0;
   }
 }
 
 @media screen and (min-width: $screen-size-tablet) {
   .character-list-container {
     grid-template-columns: 1fr 1fr;
+    height: calc(100% - 124px);
   }
 }
 
@@ -55,9 +66,6 @@
 }
 
 @media screen and (min-width: $screen-size-laptop-lg) {
-  :host {
-    padding: 32px;
-  }
   .character-list-container {
     grid-template-columns: repeat(5, 1fr);
   }

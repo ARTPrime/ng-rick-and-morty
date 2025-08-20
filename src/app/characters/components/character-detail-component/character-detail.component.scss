@@ -1,3 +1,5 @@
+@use "../../../../scss/variables.scss" as *;
+
 :host {
   display: block;
   width: 100%;
@@ -8,9 +10,30 @@
   height: 100%;
 }
 
-.character-detail-container {
-  width: calc(50% - 64px);
-  height: 100%;
-  background-color: black;
-  padding: 32px;
+.character-detail {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 32px);
+    height: calc(100% - 32px);
+    background-color: black;
+    padding: 16px;
+  }
+
+  &-close-button {
+    margin: 0 0 8px auto;
+  }
+}
+
+@media screen and (min-width: $screen-size-tablet) {
+  .character-detail-container {
+    width: calc(70% - 64px);
+    padding: 16px 32px;
+  }
+}
+
+@media screen and (min-width: $screen-size-laptop-md) {
+  .character-detail-container {
+    width: calc(50% - 64px);
+  }
 }

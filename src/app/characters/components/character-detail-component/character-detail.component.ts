@@ -1,6 +1,6 @@
 import { Component, DestroyRef, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { CharactersService } from '../../services/characters.service';
 import { switchMap } from 'rxjs';
 import { Character } from '../../../models/character';
@@ -17,7 +17,8 @@ export class CharacterDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private destroyRef: DestroyRef,
-    private charactersService: CharactersService
+    private charactersService: CharactersService,
+    private router: Router
   ) {}
 
   public ngOnInit(): void {
@@ -33,5 +34,9 @@ export class CharacterDetailComponent implements OnInit {
       .subscribe((character: Character) => {
         this.characterData?.set(character);
       });
+  }
+
+  public onCloseDetail() {
+    this.router.navigate(['characters']);
   }
 }

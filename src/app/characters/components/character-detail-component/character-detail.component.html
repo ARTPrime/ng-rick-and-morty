@@ -1,5 +1,13 @@
 @if(characterData()) {
 <main class="character-detail-container">
+  <button
+    class="character-detail-close-button"
+    matIconButton
+    aria-label="Close character detail"
+    (click)="onCloseDetail()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
   <mat-card appearance="outlined">
     <mat-card-header>
       <mat-card-title> {{ characterData()?.name }}</mat-card-title>

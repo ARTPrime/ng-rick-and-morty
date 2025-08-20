@@ -1,9 +1,23 @@
+@use "../../../scss/variables.scss" as *;
+
 :host {
   display: flex;
+  flex-direction: column-reverse;
   justify-content: flex-end;
   align-items: center;
 }
 
 mat-form-field {
-  max-width: 100px;
+  width: 100%;
+}
+
+@media screen and (min-width: $screen-size-tablet) {
+  :host {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  mat-form-field {
+    width: 20%;
+  }
 }
