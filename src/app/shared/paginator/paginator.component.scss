@@ -21,3 +21,9 @@ mat-form-field {
     width: 20%;
   }
 }
+
+@media screen and (min-width: $screen-size-laptop-sm) {
+  mat-form-field {
+    width: 100px;
+  }
+}

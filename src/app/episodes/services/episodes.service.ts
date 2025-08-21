@@ -11,7 +11,7 @@ export class EpisodesService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public getEpisodes(page?: number): Observable<PaginatedResponse<Episode>> {
+  public getAllEpisodes(page?: number): Observable<PaginatedResponse<Episode>> {
     return this.httpClient.get<PaginatedResponse<Episode>>(
       page ? `${this.path}/?page=${page}` : this.path
     );
@@ -19,5 +19,9 @@ export class EpisodesService {
 
   public getEpisode(id: number): Observable<Episode> {
     return this.httpClient.get<Episode>(`${this.path}/${id}`);
+  }
+
+  public getEpisodes(ids: number[]): Observable<Episode[]> {
+    return this.httpClient.get<Episode[]>(`${this.path}/[${ids.join(',')}]`);
   }
 }

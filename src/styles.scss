@@ -3,6 +3,7 @@
 // components according to the Material 3 design spec.
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
+@use "./scss/reset.scss" as *;
 @use "@angular/material" as mat;
 @use "./scss/variables.scss" as *;
 

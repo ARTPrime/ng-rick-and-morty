@@ -33,7 +33,7 @@ export class EpisodeListComponent implements OnInit {
    */
   public ngOnInit(): void {
     this.episodesService
-      .getEpisodes()
+      .getAllEpisodes()
       .pipe(take(1))
       .subscribe((response: PaginatedResponse<Episode>) => {
         this.paginationInfo.set(response.info);
@@ -43,7 +43,7 @@ export class EpisodeListComponent implements OnInit {
 
   public onPageEvent(pageEvent: PageEvent) {
     this.episodesService
-      .getEpisodes(pageEvent.pageIndex + 1)
+      .getAllEpisodes(pageEvent.pageIndex + 1)
       .pipe(take(1))
       .subscribe((response: PaginatedResponse<Episode>) => {
         this.paginationInfo.set(response.info);

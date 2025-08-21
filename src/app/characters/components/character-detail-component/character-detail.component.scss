@@ -3,7 +3,7 @@
 :host {
   display: block;
   width: 100%;
-  background-color: rgba($color: #000000, $alpha: 0.8);
+  background-color: rgba($color: #000000, $alpha: 0.5);
   position: absolute;
   top: 0;
   left: 0;
@@ -18,6 +18,32 @@
     height: calc(100% - 32px);
     background-color: black;
     padding: 16px;
+  }
+
+  &-general {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &-image > img {
+    max-width: 100%;
+    border-radius: 50%;
+  }
+
+  &-header > mat-card-header {
+    padding: 16px;
+  }
+
+  &-attributes > mat-card-content,
+  &-location-links > mat-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &-location-links {
+    gap: 16px;
   }
 
   &-close-button {
